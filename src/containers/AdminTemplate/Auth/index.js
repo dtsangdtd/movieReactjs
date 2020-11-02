@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
-export default class Authentication extends Component {
+import { connect } from 'react-redux';
+import { actLoginAPI } from '../Auth/modules/actions';
+class Authentication extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +17,8 @@ export default class Authentication extends Component {
   };
   handleLogin = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
+    this.props.LoginAPI(this.state);
   };
   render() {
     return (
@@ -27,11 +29,11 @@ export default class Authentication extends Component {
             <div className='form-group'>
               <label htmlFor='exampleInputEmail1'>Username</label>
               <input
-                type='email'
+                type='text'
                 className='form-control'
                 id='exampleInputEmail1'
                 aria-describedby='emailHelp'
-                placeholder='Enter email'
+                placeholder='Enter Username'
                 name='taiKhoan'
                 onChange={this.handleOnChange}
               />
@@ -47,6 +49,17 @@ export default class Authentication extends Component {
                 onChange={this.handleOnChange}
               />
             </div>
+            {this.props.data ? (
+              <div class='alert alert-primary' role='alert'>
+                Login Successfull
+              </div>
+            ) : (
+              <>
+                <div class='alert alert-primary' role='alert'>
+                  password or username incorrect
+                </div>
+              </>
+            )}
             <button type='submit' className='btn btn-primary'>
               Submit
             </button>
@@ -56,3 +69,12 @@ export default class Authentication extends Component {
     );
   }
 }
+const mapStateToProp = (state) => ({
+  data: state.authReducer.data,
+});
+const mapDispatchToProps = (dispatch) => ({
+  LoginAPI: (user) => {
+    dispatch(actLoginAPI(user));
+  },
+});
+export default connect(mapStateToProp, mapDispatchToProps)(Authentication);
