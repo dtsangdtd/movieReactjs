@@ -1,4 +1,3 @@
-import { data } from 'jquery';
 import {
   DETAIL_PAGE_REQUEST,
   DETAIL_PAGE_SUCCESS,

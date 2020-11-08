@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+// import Axios from 'axios';
 import Movie from '../../../components/Movie';
 import { connect } from 'react-redux';
 import { actListMovieAPI } from './modules/action';

@@ -9,7 +9,7 @@ import PageNotFound from './containers/PageNotFound';
 import { routesHome, routesAdmin } from './routes';
 // import NavbarAdmin from './components/NavbarAdmin';
 import HomeTemplate from './containers/HomeTemplate';
-import AdminTemplate from './components/NavbarAdmin';
+import AdminTemplate from './containers/AdminTemplate';
 import Authentication from './containers/AdminTemplate/Auth';
 function App() {
   const showLayoutHome = (routes) => {

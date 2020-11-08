@@ -4,7 +4,7 @@ import {
   AUTH_PAGE_FAILED,
 } from './constants';
 import Axios from 'axios';
-export const actLoginAPI = (user) => {
+export const actLoginAPI = (user, history) => {
   return (dispatch) => {
     dispatch(actLoginRequest());
     // console.log(user);
@@ -15,7 +15,16 @@ export const actLoginAPI = (user) => {
     })
       .then((result) => {
         dispatch(actLoginSuccess(result));
-        console.log(result);
+        // console.log(result);
+        // Chuyen den trang dashboard
+        if (result.data.maLoaiNguoiDung === 'QuanTri') {
+          localStorage.setItem('UserAdmin', JSON.stringify(result.data));
+          history.push('/dashboard');
+        } else {
+          // localStorage.setItem('UserAdmin', JSON.stringify(result.data));
+          // history.push('/');
+          alert('Khong co quyen truy cap');
+        }
       })
       .catch((err) => {
         dispatch(actLoginFailed(err));
