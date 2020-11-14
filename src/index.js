@@ -9,6 +9,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min';
 import '../node_modules/jquery/dist/jquery.slim.min';
 import '../node_modules/popper.js/dist/umd/popper.min';
+import './scss/index.scss';
 
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';

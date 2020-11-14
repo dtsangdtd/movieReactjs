@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NhanVien from './NhanVien';
-import SanPham from './SanPham';
+// import NhanVien from './NhanVien';
+// import SanPham from './SanPham';
 
 export default function WithModal(Component) {
   return function () {

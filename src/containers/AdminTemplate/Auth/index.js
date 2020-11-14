@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actLoginAPI } from '../Auth/modules/actions';
+import Loader from '../../../components/Loader';
 class Authentication extends Component {
   constructor(props) {
     super(props);
@@ -18,14 +19,24 @@ class Authentication extends Component {
   handleLogin = (e) => {
     e.preventDefault();
     // console.log(this.state);
-    this.props.LoginAPI(this.state);
+    this.props.LoginAPI(this.state, this.props.history);
+    // console.log(this.props);s
+  };
+  renderNoti = () => {
+    const { error } = this.props;
+    if (error) {
+      return <div className='alert alert-danger'>{error.response.data}</div>;
+    }
   };
   render() {
+    const { loadding } = this.props;
+    if (loadding) return <Loader />;
     return (
       <div className='container'>
         <div className='col-md-6 mx-auto'>
           <h3>Authentication Page Login</h3>
           <form onSubmit={this.handleLogin}>
+            {this.renderNoti()}
             <div className='form-group'>
               <label htmlFor='exampleInputEmail1'>Username</label>
               <input
@@ -49,7 +60,8 @@ class Authentication extends Component {
                 onChange={this.handleOnChange}
               />
             </div>
-            {this.props.data ? (
+
+            {/* {this.props.data ? (
               <div class='alert alert-primary' role='alert'>
                 Login Successfull
               </div>
@@ -59,7 +71,7 @@ class Authentication extends Component {
                   password or username incorrect
                 </div>
               </>
-            )}
+            )} */}
             <button type='submit' className='btn btn-primary'>
               Submit
             </button>
@@ -71,10 +83,11 @@ class Authentication extends Component {
 }
 const mapStateToProp = (state) => ({
   data: state.authReducer.data,
+  error: state.authReducer.err,
 });
 const mapDispatchToProps = (dispatch) => ({
-  LoginAPI: (user) => {
-    dispatch(actLoginAPI(user));
+  LoginAPI: (user, history) => {
+    dispatch(actLoginAPI(user, history));
   },
 });
 export default connect(mapStateToProp, mapDispatchToProps)(Authentication);
