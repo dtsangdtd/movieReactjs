@@ -4,7 +4,6 @@ import {
   DETAIL_PAGE_FAILED,
 } from './constant';
 import Axios from 'axios';
-import { actListMovieSuccess } from '../../ListMoviePage/modules/action';
 
 export const actDetailPageAPI = (id) => {
   return (dispatch) => {

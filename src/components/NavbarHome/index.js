@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 export default class NavbarHome extends Component {
   render() {
     return (
-      <nav className='navbar navbar-expand-md bg-dark navbar-dark'>
+      <nav className='navbar navbar-expand-md bg-dark navbar-light'>
         {/* Brand */}
         <Link className='navbar-brand' to='/'>
           User
